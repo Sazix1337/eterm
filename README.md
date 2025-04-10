@@ -17,7 +17,7 @@ A stunning 3D ASCII physics-based black hole simulation that runs directly in yo
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/eterm.git
+   git clone https://github.com/Sazix1337/eterm.git
    cd eterm
    ```
 
@@ -92,12 +92,3 @@ eterm/
 npm run build   # Build the project
 npm start       # Run the project
 ```
-
-## 📝 License
-
-MIT
-
-## 🙏 Acknowledgements
-
-- Inspired by classic ASCII art and terminal demos
-- Built with TypeScript and Node.js 
