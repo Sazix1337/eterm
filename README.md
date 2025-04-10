@@ -1,6 +1,6 @@
 # eterm - 3D Terminal Black Hole Simulation
 
-![Terminal Black Hole Demo](https://i.imgur.com/XKfU8jW.png)
+![Terminal Black Hole Demo](https://imgur.com/a/AdpAjRU)
 
 A stunning 3D ASCII physics-based black hole simulation that runs directly in your terminal. Watch as two black holes orbit each other following real gravitational physics, eventually colliding and flying apart with dramatic energy.
 
