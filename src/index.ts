@@ -14,12 +14,24 @@ export const VERSION = '2.1.2';
 
 if (require.main === module) {
     const demo = async () => {
+        // Display controls before initializing engine
+        process.stderr.write('\n=== Lighting Controls ===\n');
+        process.stderr.write('Use keyboard to adjust lighting:\n');
+        process.stderr.write('1/2: Increase/Decrease light intensity\n');
+        process.stderr.write('A/D: Move light left/right (X axis)\n');
+        process.stderr.write('W/S: Move light up/down (Y axis)\n');
+        process.stderr.write('Q/E: Move light in/out (Z axis)\n');
+        process.stderr.write('R: Reset lighting to default\n');
+        process.stderr.write('H: Show this help again\n');
+        process.stderr.write('Ctrl+C: Exit\n');
+        process.stderr.write('======================\n\n');
+        
         const { Engine, Sphere, Vector3, PhysicsSystem } = require('./index');
         const WINDOW_WIDTH = 40;
         const WINDOW_HEIGHT = 20;
         
         // Calculate aspect ratio to ensure spheres look proportional
-        const aspectRatio = (0.5) / 2; // Terminal chars are roughly twice as tall as wide
+        const aspectRatio = 0.25; // Terminal chars are roughly twice as tall as wide
         
         const engine = new Engine({
             width: WINDOW_WIDTH,
@@ -32,7 +44,7 @@ if (require.main === module) {
         
         // Create two spheres with proper aspect ratio scaling
         const sphere1 = new Sphere(
-            new Vector3(-3.0, 0, 0),
+            new Vector3(-2.0, 0, 0),
             0.4,
             40,
             true,
@@ -42,7 +54,7 @@ if (require.main === module) {
         sphere1.setScale(new Vector3(1, aspectRatio, 1));
         
         const sphere2 = new Sphere(
-            new Vector3(3.0, 0, 0),
+            new Vector3(2.0, 0, 0),
             0.3,
             40,
             true,
@@ -110,9 +122,9 @@ if (require.main === module) {
                             );
                             
                             // Add significant extra energy to make it more dramatic
-                            newVelocity.x *= 3.0;
-                            newVelocity.y *= 3.0;
-                            newVelocity.z *= 3.0;
+                            newVelocity.x *= 5.0;
+                            newVelocity.y *= 5.0;
+                            newVelocity.z *= 5.0;
                             
                             obj1.velocity = newVelocity.clone();
                             obj2.velocity = newVelocity.clone();
@@ -184,11 +196,11 @@ if (require.main === module) {
         }
         
         // Create custom physics system with stronger gravity
-        const gravityPhysics = new GravityPhysics(3.0); // Significantly increased gravity constant
+        const gravityPhysics = new GravityPhysics(5.0); // Significantly increased gravity constant
         
         // Set up orbital mechanics
-        const distance = 3.0;
-        const orbitSpeed = 1.0; // Faster initial velocity
+        const distance = 2.0;
+        const orbitSpeed = 1.5; // Faster initial velocity
         
         // Add spheres to physics system
         const physicsObj1 = {
@@ -269,17 +281,18 @@ if (require.main === module) {
             });
         }
         
-        // Display lighting controls info in a separate function
+        // Display lighting controls function
         const displayControls = () => {
-            console.log('\n=== Lighting Controls ===');
-            console.log('Use keyboard to adjust lighting:');
-            console.log('1/2: Increase/Decrease light intensity');
-            console.log('A/D: Move light left/right (X axis)');
-            console.log('W/S: Move light up/down (Y axis)');
-            console.log('Q/E: Move light in/out (Z axis)');
-            console.log('R: Reset lighting to default');
-            console.log('Ctrl+C: Exit');
-            console.log('======================\n');
+            process.stderr.write('\n=== Lighting Controls ===\n');
+            process.stderr.write('Use keyboard to adjust lighting:\n');
+            process.stderr.write('1/2: Increase/Decrease light intensity\n');
+            process.stderr.write('A/D: Move light left/right (X axis)\n');
+            process.stderr.write('W/S: Move light up/down (Y axis)\n');
+            process.stderr.write('Q/E: Move light in/out (Z axis)\n');
+            process.stderr.write('R: Reset lighting to default\n');
+            process.stderr.write('H: Show this help again\n');
+            process.stderr.write('Ctrl+C: Exit\n');
+            process.stderr.write('======================\n\n');
         };
         
         // Set up keyboard controls for lighting
@@ -314,8 +327,8 @@ if (require.main === module) {
                     break;
             }
             
-            // Print status on a single line without clearing screen
-            process.stdout.write(`\rLight: intensity=${lightIntensity.toFixed(1)}, position=(${lightX.toFixed(1)}, ${lightY.toFixed(1)}, ${lightZ.toFixed(1)})     `);
+            // Print status on stderr (won't interfere with rendering)
+            process.stderr.write(`Light: intensity=${lightIntensity.toFixed(1)}, position=(${lightX.toFixed(1)}, ${lightY.toFixed(1)}, ${lightZ.toFixed(1)})\n`);
         });
         
         // Update physics every frame
@@ -360,9 +373,6 @@ if (require.main === module) {
         }, 1000 / 60);
         
         engine.start();
-        
-        // Show controls after engine starts
-        setTimeout(displayControls, 500);
     };
     
     demo().catch(console.error);
