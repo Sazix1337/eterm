@@ -5,7 +5,7 @@ https://imgur.com/a/AdpAjRU
 
 A stunning 3D ASCII physics-based black hole simulation that runs directly in your terminal. Watch as two black holes orbit each other following real gravitational physics, eventually colliding and flying apart with dramatic energy.
 
-## ✨ Features
+## Features
 
 - **True 3D Rendering**: Spheres with proper lighting, shadows and perspective
 - **Physics Simulation**: Accurate gravitational attraction between objects
@@ -14,7 +14,7 @@ A stunning 3D ASCII physics-based black hole simulation that runs directly in yo
 - **Realistic Collisions**: Watch dramatic collisions with momentum conservation
 - **Orbital Trails**: Visual trails show the path of each sphere
 
-## 🚀 Installation
+## Installation
 
 1. Clone the repository:
    ```bash
@@ -32,7 +32,7 @@ A stunning 3D ASCII physics-based black hole simulation that runs directly in yo
    npm run build
    ```
 
-## 🎮 Usage
+## Usage
 
 Run the demo:
 ```bash
@@ -50,7 +50,7 @@ node dist/index.js
 | R | Reset lighting to default |
 | Ctrl+C | Exit |
 
-## 🔍 How It Works
+## How It Works
 
 The simulation creates two 3D spheres with different masses that attract each other according to the law of universal gravitation (F = G × m₁m₂/r²). The spheres are rendered using ASCII characters with lighting and shading to create a 3D effect.
 
@@ -70,7 +70,7 @@ Each sphere is affected by the gravitational pull of the other, creating orbital
 - Momentum conservation
 - Trail visualization
 
-## 🧑‍💻 Development
+## Development
 
 ### Folder Structure
 
