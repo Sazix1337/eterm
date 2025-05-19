@@ -83,15 +83,12 @@ export class BlackHole extends BasePrimitive {
                 if (distanceSquared > innerRadius * innerRadius && distanceSquared <= outerRadius * outerRadius) {
                     const distance = Math.sqrt(distanceSquared);
                     
-                    // Apply rotation to create the disk tilt effect
                     const point3D = rotationMatrix.multiplyVector(new Vector3(dx, 0, dy));
                     
-                    // Only draw if the point is close to the x-z plane (disk is thin)
                     if (Math.abs(point3D.y) < 0.3) {
                         const adjustedDepth = depth + point3D.y;
                         
                         if (depthBuffer[y][x] === undefined || adjustedDepth < depthBuffer[y][x]!) {
-                            // Vary the character based on distance
                             const intensity = 1 - (distance - innerRadius) / (outerRadius - innerRadius);
                             buffer[y][x] = intensity > 0.7 ? this.accretionDiskChar : (intensity > 0.3 ? '·' : '·');
                             depthBuffer[y][x] = adjustedDepth;
