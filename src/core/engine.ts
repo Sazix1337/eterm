@@ -77,16 +77,13 @@ export class Engine {
     }
     
     private clearTerminal(): void {
-        // More aggressive terminal clearing
-        process.stdout.write('\u001B[2J\u001B[0;0H'); // ANSI escape codes
+        process.stdout.write('\u001B[2J\u001B[0;0H');
         
-        // For Windows terminals
         if (process.platform === 'win32') {
             require('readline').cursorTo(process.stdout, 0, 0);
             require('readline').clearScreenDown(process.stdout);
         }
         
-        // For some terminals we may need to output newlines
         console.clear();
     }
     
